@@ -24,6 +24,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
+  //Initializes TestCommand and TestSubsystem to be used
+  private final TestCommand m_testCommand = new TestCommand(new TestSubsystem());
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -50,8 +53,12 @@ public class RobotContainer {
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.a().whileTrue(new TestCommand(new TestSubsystem(true)));
-    m_driverController.a().whileFalse(new TestCommand(new TestSubsystem(false)));
+    /**
+     * Schedules "testCommand" based on the status of the A button on the connected xbox controller.
+     * These two lines activates the motor when the A button is pressed and stops the motor when its not.
+     */
+    m_driverController.a().onTrue(m_testCommand.setMotor(true));
+    m_driverController.a().onFalse(m_testCommand.setMotor(false));
   }
 
   /**
