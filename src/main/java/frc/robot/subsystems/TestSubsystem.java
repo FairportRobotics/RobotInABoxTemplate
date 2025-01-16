@@ -19,18 +19,30 @@ public class TestSubsystem extends SubsystemBase {
      * Constructor of the Test Subsystem.
      * @param motorActivated is true when the motor should be on at that time, false otherwise.
      */
-    public TestSubsystem(boolean motorActivated)
-    {
-        this.motorActivated = motorActivated;
-    }
+    private static boolean motorActivated = false;
 
     /**
-     * Runs the motor depending on if the motor should be running at that time during construction.
+     * Constructs a new instance of TestSubsystem.
+     */
+    public TestSubsystem()
+    {}
+
+    /**
+     * Runs the motor depending on if the motor should be active.
      */
     public void runMotor() {
         if(motorActivated)
             motor.set(ControlMode.PercentOutput, .1);
         else
             motor.set(ControlMode.PercentOutput, 0);
+    }
+
+    /**
+     * A setter for motor activation.
+     * @param motorActivated is true if the motor should be active, false otherwise.
+     */
+    public static void setMotor(boolean motorActivated)
+    {
+        TestSubsystem.motorActivated = motorActivated;
     }
 }
