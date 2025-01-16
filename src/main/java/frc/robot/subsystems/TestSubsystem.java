@@ -2,17 +2,22 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class TestSubsystem extends SubsystemBase {
     /**
-     * The motor that was used to run
+     * Stores the motor reference to the robot.
      */
-    public final TalonSRX motor = new TalonSRX(17);
+    public final TalonSRX motor = new TalonSRX(Constants.MotorConstants.MOTOR_ID);
+    
+    /**
+     * Stores whether the robot should be active.
+     */
+    private boolean motorActivated;
 
     /**
-     * motorActivated is a boolean that is only acessible by all instances of
-     * TestSubsystem as its both a private and a static variable.
-     * The setter allows it to be accessible to other classes.
+     * Constructor of the Test Subsystem.
+     * @param motorActivated is true when the motor should be on at that time, false otherwise.
      */
     private static boolean motorActivated = false;
 

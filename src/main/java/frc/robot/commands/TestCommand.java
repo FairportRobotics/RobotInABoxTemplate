@@ -8,14 +8,13 @@ import frc.robot.subsystems.TestSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
-/** An example command that uses an example subsystem. */
+/** An test command that uses an test subsystem. */
 public class TestCommand extends Command {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final TestSubsystem testSubsystem;
 
   /**
    * Constructs a new instance of TestCommand.
-   * @param testSubsystem The testSubsystem used by this command.
+   * @param testSubsystem The testSubsystem used by this command
    */
   public TestCommand(TestSubsystem testSubsystem) {
     this.testSubsystem = testSubsystem;

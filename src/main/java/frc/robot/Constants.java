@@ -25,7 +25,8 @@ public final class Constants {
     }
     public static final RobotType CURRENT_MODE = RobotType.REAL;
   }
+  
   public static class MotorConstants{
-    public static final int MOTOR_ID = 12; //Stores the ID # of the motor, please double check
+    public static final int MOTOR_ID = 17; //Stores the ID # of the motor, please double check
   }
 }
