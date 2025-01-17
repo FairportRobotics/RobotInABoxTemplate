@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 /** An test command that uses an test subsystem. */
 public class TestCommand extends Command {
   private final TestSubsystem testSubsystem;
+  private int tickCounter = 1;
 
   /**
    * Constructs a new instance of TestCommand.
@@ -32,6 +33,7 @@ public class TestCommand extends Command {
   @Override
   public void execute() {
     testSubsystem.runMotor();
+    tickCounter--;
   }
 
   // Called once the command ends or is interrupted.
@@ -42,6 +44,12 @@ public class TestCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return tickCounter == 0;
+  }
+
+  public Command setMotorActivated(boolean motorActivated)
+  {
+    testSubsystem.setMotorActivated(motorActivated);
+    return this;
   }
 }

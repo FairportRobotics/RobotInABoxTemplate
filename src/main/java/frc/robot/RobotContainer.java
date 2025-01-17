@@ -54,9 +54,16 @@ public class RobotContainer {
      * constructor,
      * cancels on release.
      */
-    m_driverController.a().whileTrue(new TestCommand(new TestSubsystem(true)));
-    m_driverController.a().whileFalse(new TestCommand(new TestSubsystem(false)));
+    m_driverController.a().whileTrue(new TestCommand(testSubsystem).setMotorActivated(true));
+    
+    /**
+     * Somehow this overrides any button press by the user.
+     */
+    m_driverController.a().whileFalse(new TestCommand(testSubsystem).setMotorActivated(true));
   }
+
+  //Stores the instance of the testSubsystem
+  private TestSubsystem testSubsystem = new TestSubsystem();
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

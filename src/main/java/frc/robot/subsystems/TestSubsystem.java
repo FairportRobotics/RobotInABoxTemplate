@@ -14,14 +14,12 @@ public class TestSubsystem extends SubsystemBase {
     /**
      * Stores whether the robot should be active.
      */
-    private boolean motorActivated;
+    private static boolean motorActivated = true;
 
     /**
      * Constructs a new instance of TestSubsystem.
      */
-    public TestSubsystem(boolean motorActivated) {
-        this.motorActivated = motorActivated;
-    }
+    public TestSubsystem() {}
 
     /**
      * Runs the motor depending on if the motor should be active.
@@ -38,7 +36,7 @@ public class TestSubsystem extends SubsystemBase {
      * 
      * @param motorActivated is true if the motor should be active, false otherwise.
      */
-    public void setMotor(boolean motorActivated) {
-        this.motorActivated = motorActivated;
+    public void setMotorActivated(boolean motorActivated) {
+        TestSubsystem.motorActivated = motorActivated;
     }
 }
