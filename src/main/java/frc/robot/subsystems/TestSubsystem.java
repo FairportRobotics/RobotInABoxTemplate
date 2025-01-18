@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.commands.TestCommand;
 
 public class TestSubsystem extends SubsystemBase {
     /**
@@ -12,33 +14,16 @@ public class TestSubsystem extends SubsystemBase {
     public final TalonSRX motor = new TalonSRX(Constants.MotorConstants.MOTOR_ID);
 
     /**
-     * Stores whether the robot should be active.
-     */
-    private boolean motorActivated;
-
-    /**
      * Constructs a new instance of TestSubsystem.
      */
-    public TestSubsystem(boolean motorActivated) {
-        this.motorActivated = motorActivated;
+    public TestSubsystem() {
+        setDefaultCommand(new TestCommand(this));
     }
 
     /**
      * Runs the motor depending on if the motor should be active.
      */
     public void runMotor() {
-        if (motorActivated)
-            motor.set(ControlMode.PercentOutput, .1);
-        else
-            motor.set(ControlMode.PercentOutput, 0);
-    }
-
-    /**
-     * A setter for motor activation.
-     * 
-     * @param motorActivated is true if the motor should be active, false otherwise.
-     */
-    public void setMotor(boolean motorActivated) {
-        this.motorActivated = motorActivated;
+        motor.set(ControlMode.PercentOutput, Math.pow(-1, String.valueOf(RobotContainer.m_driverController.a().getAsBoolean()).indexOf("true")) * RobotContainer.m_driverController.getLeftY());
     }
 }
